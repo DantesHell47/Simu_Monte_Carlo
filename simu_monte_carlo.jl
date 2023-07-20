@@ -5,13 +5,14 @@ vsim = []
 
 nmax = 10000
 
-moeda = ["cara", "coroa"]
+# moeda = ["cara", "coroa"]
 
 for nsim in 1:nmax
 	n = 0
 	for i in 1:nsim
-		position = rand(moeda)
-		if position == "cara"
+		# position = rand(moeda)
+		moeda = rand(Bool) ? "CARA" : "COROA"
+		if moeda == "CARA"
 			n+=1
 		end
 	end
