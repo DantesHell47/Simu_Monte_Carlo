@@ -3,7 +3,7 @@ using Plots; gr()
 vp = []
 vsim = []
 
-nmax = 1000
+nmax = 10000
 
 moeda = ["cara", "coroa"]
 
@@ -19,4 +19,6 @@ for nsim in 1:nmax
 	push!(vsim, nsim)
 end
 
-plot(vsim, vp)
+plot(vsim, vp, xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
+hline!([0.5], c=:red, ls=:dash,lw=3., label="Valor teórico")
+savefig("graf_simu.svg")
