@@ -3,7 +3,7 @@ using Plots; gr()
 vp = []
 vsim = []
 
-nmax = 100
+nmax = 1000
 
 moeda = ["cara", "coroa"]
 
@@ -19,4 +19,4 @@ for nsim in 1:nmax
 	push!(vsim, nsim)
 end
 
-plot(vp, vsim)
+plot(vsim, vp)
