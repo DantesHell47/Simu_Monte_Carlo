@@ -1,4 +1,4 @@
-# Simu_Monte_Carlo
+# Simulação de Monte Carlo
 
 Este código é um programa em Julia que simula o lançamento de uma moeda (cara ou coroa) diversas vezes e estima a probabilidade de obter "cara" em cada simulção. O código também faz um gráfico da probabilidade estimada em função do número de simulaçoes realizada
 
