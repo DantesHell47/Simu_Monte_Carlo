@@ -1,7 +1,7 @@
 using Plots; gr()
-simulation_moeda(nmax)
-	vp = []
-	vsim = []
+simulation_moeda(nmax::Int)
+	vp = Float64[]
+	vsim = Int[]
 	# moeda = ["cara", "coroa"]
 
 	for nsim in 1:nmax
