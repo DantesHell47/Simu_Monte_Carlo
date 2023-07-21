@@ -25,7 +25,7 @@ function simulation_cara_coroa(nmax::Int)
 
 	plot(vsim, vp, xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
 	hline!([0.5], c=:red, ls=:dash,lw=3., label="Valor teórico")
-	# savefig("graf_simu1.svg")
+	savefig("graf_simu1.svg")
 
 end
 
