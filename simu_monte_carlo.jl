@@ -14,8 +14,8 @@ function simulation_cara_coroa(nmax::Int)
 		n = 0
 		for i in 1:nsim
 			# position = rand(moeda)
-			moeda = rand(Bool) ? "CARA" : "COROA"
-			if moeda == "CARA"
+			resultado = lancar_moeda()
+			if resultado == "CARA"
 				n+=1
 			end
 		end
@@ -28,4 +28,5 @@ function simulation_cara_coroa(nmax::Int)
 	savefig("graf_simu1.svg")
 
 end
+
 
