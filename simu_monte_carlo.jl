@@ -8,13 +8,11 @@ end
 
 function simulation_cara_coroa(nmax::Int)
 	probabilities = Float64[]
-	num_simulations = Int[]
-	# moeda = ["cara", "coroa"]
-	
+	num_simulations = Int[]	
 	for nsim in 1:nmax
 		n = 0
 		for i in 1:nsim
-			# position = rand(moeda)
+
 			resultado = lancar_moeda()
 			if resultado == "CARA"
 				n+=1
