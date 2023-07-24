@@ -1,19 +1,19 @@
 using Plots
 
-function lancar_moeda()
-	return rand() < 0.5 ? "CARA" : "COROA"
+function lancar_moeda(prob_car::Floa64)
+	return rand() < prob_car ? "CARA" : "COROA"
 end
 
 
 
-function simulation_cara_coroa(nmax::Int)
+function simulation_cara_coroa(nmax::Int, prob_car::Float64)
 	probabilities = Float64[]
 	num_simulations = Int[]	
 	for nsim in 1:nmax
 		n = 0
 		for i in 1:nsim
 
-			resultado = lancar_moeda()
+			resultado = lancar_moeda(prob_car)
 			if resultado == "CARA"
 				n+=1
 			end
@@ -23,15 +23,9 @@ function simulation_cara_coroa(nmax::Int)
 	end
 	
 	plot(num_simulations, probabilities, xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
-	hline!([0.5], c=:red, ls=:dash,lw=3., label="Valor teórico")
-	savefig("graf_simu1.svg")
+	hline!([prob_car], c=:red, ls=:dash,lw=3., label="Valor teórico")
+	savefig("/home/dante/Documentos/Simu_Monte_Carlo/graf_simu1.svg")
 	
 end
 
-
-
-function plot_coin_toss_simulation(nmax::Int, output_file::AbstractString)
-	probabilities, num_simulations = simulation_cara_coroa(nmax)
-	plot(num_simulations, probabilities, xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
-	hline!([0.5], c=:red, ls=:dash,lw=3., label="Valor teórico")
-	savefig(output_file)
+simulation_cara_coroa(1000, 0.6)
