@@ -1,20 +1,21 @@
 using Plots
 
-function flip_coin(prob_car::Floa64)
-	return rand() < prob_car ? "CARA" : "COROA"
+# Simula o lançamento de uma moeda.
+function flip_coin(prob_heads::Float64)
+	return rand() < prob_heads ? "HEADS" : "TAILS"
 end
 
 
 
-function flip_coin_simulation(nmax::Int, prob_car::Float64)
+function flip_coin_simulation(nmax::Int, prob_heads::Float64)
 	probabilities = Float64[]
 	num_simulations = Int[]	
 	for nsim in 1:nmax
 		n = 0
 		for i in 1:nsim
 
-			resultado = flip_coin(prob_car)
-			if resultado == "CARA"
+			result = flip_coin(prob_heads)
+			if result == "HEADS"
 				n+=1
 			end
 		end
@@ -22,10 +23,17 @@ function flip_coin_simulation(nmax::Int, prob_car::Float64)
 		push!(num_simulations, nsim)
 	end
 	
-	plot(num_simulations, probabilities, xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
-	hline!([prob_car], c=:red, ls=:dash,lw=3., label="Valor teórico")
-	savefig("/home/dante/Documentos/Simu_Monte_Carlo/graf_simu1.svg")
+	return num_simulations, probabilities 
+	# plot(num_simulations, probabilities, xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
+	# hline!([prob_heads], c=:red, ls=:dash,lw=3., label="Valor teórico")
+	# savefig("/home/dante/Documentos/Simu_Monte_Carlo/graf_simu1.svg")
 	
 end
 
-flip_coin_simulation(1000, 0.6)
+# Faz o gráfico da simulação de cara ou coroa
+function plot_flip_coin_simulation(nmax::Int, prob_heads::Float64)
+	plot(flip_coin_simulation(nmax, prob_heads), xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
+	hline!([prob_heads], c=:red, ls=:dash,lw=3., label="Valor teórico", title="Simulação de cara ou coroa")
+	savefig("/home/dante/Documentos/Simu_Monte_Carlo/graf_simu3.svg")
+	
+end
