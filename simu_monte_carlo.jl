@@ -1,19 +1,19 @@
 using Plots
 
-function lancar_moeda(prob_car::Floa64)
+function flip_coin(prob_car::Floa64)
 	return rand() < prob_car ? "CARA" : "COROA"
 end
 
 
 
-function simulation_cara_coroa(nmax::Int, prob_car::Float64)
+function flip_coin_simulation(nmax::Int, prob_car::Float64)
 	probabilities = Float64[]
 	num_simulations = Int[]	
 	for nsim in 1:nmax
 		n = 0
 		for i in 1:nsim
 
-			resultado = lancar_moeda(prob_car)
+			resultado = flip_coin(prob_car)
 			if resultado == "CARA"
 				n+=1
 			end
@@ -28,4 +28,4 @@ function simulation_cara_coroa(nmax::Int, prob_car::Float64)
 	
 end
 
-simulation_cara_coroa(1000, 0.6)
+flip_coin_simulation(1000, 0.6)
