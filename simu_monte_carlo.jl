@@ -32,7 +32,7 @@ end
 
 # Faz o gráfico da simulação de cara ou coroa
 function plot_flip_coin_simulation(nmax::Int, prob_heads::Float64)
-	plot(flip_coin_simulation(nmax, prob_heads), xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
+	plot(flip_coin_simulation(nmax, prob_heads), ylabel="Probabilidade",xlabel="Número de Simulações (x)",lw=2.5, label="Valores Simulados")
 	hline!([prob_heads], c=:red, ls=:dash,lw=3., label="Valor teórico", title="Simulação de cara ou coroa")
 	savefig("/home/dante/Documentos/Simu_Monte_Carlo/graf_simu3.svg")
 	
