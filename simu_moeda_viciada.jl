@@ -9,7 +9,7 @@ function flip_coin_simulation(nmax::Int, prob_heads::Float64)
 
     saldo_inicial = 1000
     lista_de_ganhos = Int[saldo_inicial]
-    valor_aposta = 10
+    valor_aposta = 5
 
 	for nsim in 1:nmax
 		n = 0
@@ -32,9 +32,11 @@ function flip_coin_simulation(nmax::Int, prob_heads::Float64)
 end
 
 function plot_flip_coin()
-	y = flip_coin_simulation(100, .49)
-	plot(1:length(y), y, legend=false)
+	y = flip_coin_simulation(100, .51)
+	x = collect(1:length(y))
+	graph = plot(x, y, legend=false, xlabel="Números de Simulações", ylabel="Ganhos do Jogador")
+	return graph
 end
 
 plot_flip_coin()
-savefig("/home/dante/Documentos/portifólio/Simu_Monte_Carlo/graf_moeda_viciada.svg")
+savefig("graf_moeda_viciada.svg")
