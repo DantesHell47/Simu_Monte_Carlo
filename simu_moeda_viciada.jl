@@ -32,7 +32,7 @@ function flip_coin_simulation(nmax::Int, prob_heads::Float64)
 end
 
 function plot_flip_coin()
-	y = flip_coin_simulation(100, .51)
+	y = flip_coin_simulation(100, .49)
 	x = collect(1:length(y))
 	graph = plot(x, y, legend=false, xlabel="Números de Simulações", ylabel="Ganhos do Jogador")
 	return graph
