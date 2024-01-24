@@ -5,12 +5,8 @@ function flip_coin(prob_heads::Float64)
 	return rand() < prob_heads ? "HEADS" : "TAILS"
 end
 
-function flip_coin_simulation(nmax::Int, prob_heads::Float64)
-
-    saldo_inicial = 1000
-    lista_de_ganhos = Int[saldo_inicial]
-    valor_aposta = 5
-
+function flip_coin_simulation(nmax::Int, prob_heads::Float64, saldo_inicial::Int=1000, valor_aposta::Int= 5)
+	lista_de_ganhos::Vector{Int} = [saldo_inicial]
 	for nsim in 1:nmax
 		n = 0
 		for _ in 1:nsim
