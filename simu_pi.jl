@@ -7,25 +7,21 @@ end
 distance_to_center(x,y) = (x^2 + y^2)^(1/2)
 
 function estimativa_pi(n)
-    point_inside_x = Float64[]
-    point_inside_y = Float64[]
-    point_outside_x = Float64[]
-    point_outside_y = Float64[]
+    point_inside = Tuple{Float64,Float64}[]
+    point_outside = Tuple{Float64,Float64}[]
+    x = Float64[rand(-1:1e-16:1) for _ in 1:n]
+    y = Float64[rand(-1:1e-16:1) for _ in 1:n]
 
-    for _ in 1:n
-        x, y = rand(-1:1e-16:1), rand(-1:1e-16:1)
-        valor_distancia = distance_to_center(x,y)
+    for i in 1:n
+        valor_distancia = distance_to_center(x[i],y[i])
 
         if valor_distancia ≤ 1
-            pontos_dentro += 1
-            push!(point_inside_x, x)
-            push!(point_inside_y, y)
+            push!(point_inside, (x[i], y[i]))
         else
-            push!(point_outside_x, x)
-            push!(point_outside_y, y)
+            push!(point_outside, (x[i], y[i]))
         end
     end
-    return collect(zip(point_inside_x, point_inside_y)), collect(zip(point_outside_x, point_outside_y))
+    return point_inside, point_outside
 end
 
 pontos_dentro, pontos_fora=estimativa_pi(10_000)
