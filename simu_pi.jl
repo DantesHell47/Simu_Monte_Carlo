@@ -1,5 +1,9 @@
 using Plots
 
+function norma_euclediana(vetor)
+    return sqrt(sum(x->x^2, vetor))
+end
+
 distance_to_center(x,y) = (x^2 + y^2)^(1/2)
 
 function estimativa_pi(n)
