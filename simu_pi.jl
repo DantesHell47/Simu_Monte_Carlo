@@ -10,6 +10,6 @@ function estimativa_pi(n)
 end
 
 pontos_dentro, pontos_fora=estimativa_pi(10_000)
-scatter(first.(pontos_dentro), last.(pontos_dentro), c=:red)
-scatter!(first.(pontos_fora), last.(pontos_fora),c=:green, legend=:none, title="Estimativa de π")
+scatter(pontos_dentro , c=:red)
+scatter!(pontos_fora ,c=:green, legend=:none, title="Estimativa de π")
 savefig("estimativa_pi_circunferencia_completa.svg")
