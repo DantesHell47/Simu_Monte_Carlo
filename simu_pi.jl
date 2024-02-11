@@ -34,7 +34,20 @@ function estimativa_pi(n)
     return pi_estimate, points_inside, points_outside
 end
 
-pontos_dentro, pontos_fora=estimativa_pi(10_000)
-scatter(pontos_dentro , c=:red)
-scatter!(pontos_fora ,c=:green, legend=:none, title="Estimativa de π")
-savefig("estimativa_pi_circunferencia_completa.svg")
+function gerar_grafico(n)
+    pontos_dentro, pontos_fora=estimativa_pi(n)
+    scatter(pontos_dentro , c=:red)
+    scatter!(pontos_fora ,c=:green, legend=:none, title="Estimativa de π (n= $n)")
+    # savefig("estimativa_pi_circunferencia_completa.svg")
+end    
+
+
+function criar_animacao(n,n_inicial, n_final, passo)
+    anim = @animate for i in n_inicial:passo:n_final
+        gerar_grafico(n)
+    end
+    gif(anim, "grafico.gif")
+end
+
+
+criar_animacao(10, 1000, 10)
