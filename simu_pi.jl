@@ -26,7 +26,7 @@ Retorna uma tupla contendo os pontos que caem dentro e fora do círculo de raio 
 """
 
 function estimativa_pi(n)
-    pontos_xy = [(rand(-1:1e-2:1), rand(-1:1e-2:1)) for _ in 1:n]
+    pontos_xy = [(rand(-1:1e-3:1), rand(-1:1e-3:1)) for _ in 1:n]
     points_inside = filter(x->(norma_euclidiana(x) ≤ 1), pontos_xy)
     points_outside = filter(x->(norma_euclidiana(x) > 1), pontos_xy)
     ratio = length(points_inside) / n
@@ -35,19 +35,22 @@ function estimativa_pi(n)
 end
 
 function gerar_grafico(n)
-    pontos_dentro, pontos_fora=estimativa_pi(n)
+    pi_estimate, pontos_dentro, pontos_fora=estimativa_pi(n)
     scatter(pontos_dentro , c=:red)
-    scatter!(pontos_fora ,c=:green, legend=:none, title="Estimativa de π (n= $n)")
+    scatter!(pontos_fora ,c=:green, legend=:none, title="Estimativa de π --> n= $n pontos \n pi ≈ $pi_estimate")
     # savefig("estimativa_pi_circunferencia_completa.svg")
 end    
 
 
-function criar_animacao(n,n_inicial, n_final, passo)
-    anim = @animate for i in n_inicial:passo:n_final
-        gerar_grafico(n)
+function criar_animacao(n)
+    pi_estimate, pontos_dentro, pontos_fora=estimativa_pi(n)
+    
+    anim = @animate for i in 1:length(pontos_dentro)
+        plot!(legend=:none, title="Estimativa de π --> n= $i pontos \n pi ≈ $(pi_estimate)")
+        scatter!(pontos_dentro[i] , c=:red, legend=:none)
+        # scatter!(pontos_fora[i] ,c=:green)
     end
-    gif(anim, "grafico.gif")
+    gif(anim, "grafico1.gif",fps=1)
 end
 
-
-criar_animacao(10, 1000, 10)
+criar_animacao(1000)
